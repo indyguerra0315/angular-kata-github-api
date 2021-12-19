@@ -1,0 +1,9 @@
+<div *ngIf="users.length <= 0" class="d-table text-center w-100 mt-5">
+  <img src="assets/img/zero.svg"/>
+  <label class="d-block">Hmm... We didn't find any users...</label>
+  <a (click)="reset()">RESET</a>
+</div>
+
+<div *ngIf="users.length > 0">
+  <label *ngFor="let user of users">{{ user.login }}</label>
+</div>

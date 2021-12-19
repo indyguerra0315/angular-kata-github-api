@@ -10,7 +10,7 @@ import { LoadingService } from '../../services/loading.service';
 })
 export class SearchInputComponent implements OnInit {
 
-  filter: string = '';
+  filter: string = 'vggg';
   isLoading: boolean = false;
   subscription: Subscription;
 
@@ -24,6 +24,9 @@ export class SearchInputComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.route.queryParams.subscribe(params => {
+    //   this.filter = params['filter'];
+    // });
     this.filter = this.route.snapshot.paramMap.get('filter')!;
   }
 

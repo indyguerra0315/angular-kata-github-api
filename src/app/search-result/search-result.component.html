@@ -1,9 +1,21 @@
-<div *ngIf="users.length <= 0" class="d-table text-center w-100 mt-5">
-  <img src="assets/img/zero.svg"/>
-  <label class="d-block">Hmm... We didn't find any users...</label>
-  <a (click)="reset()">RESET</a>
-</div>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a class="nav-link active" id="user-tab" data-toggle="tab" href="#user" role="tab" aria-controls="user" aria-selected="true">
+      Users ({{ userData?.total_count }})
+    </a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a class="nav-link" id="companies-tab" data-toggle="tab" href="#companies" role="tab" aria-controls="companies" aria-selected="false">
+      Companies ({{ companiesData?.total_count }})
+    </a>
+  </li>
+</ul>
 
-<div *ngIf="users.length > 0">
-  <label *ngFor="let user of users">{{ user.login }}</label>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="user" role="tabpanel" aria-labelledby="user-tab">
+    <app-list column1="Users" column2="Contributions" [data]="userData?.items" ></app-list>
+  </div>
+  <div class="tab-pane fade" id="companies" role="tabpanel" aria-labelledby="companies-tab">
+    <app-list column1="Company" column2="People" [data]="companiesData?.items" ></app-list>
+  </div>
 </div>

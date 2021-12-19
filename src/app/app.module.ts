@@ -7,13 +7,17 @@ import { AppComponent } from './app.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { HomeComponent } from './home/home.component';
+import { ListItemComponent } from './components/list-item/list-item.component';
+import { ListComponent } from './components/list/list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchResultComponent,
     SearchInputComponent,
-    HomeComponent
+    HomeComponent,
+    ListItemComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,

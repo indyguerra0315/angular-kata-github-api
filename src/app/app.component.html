@@ -5,6 +5,12 @@
     </header>
 
     <app-search-input></app-search-input>
+    
+    <div *ngIf="hasRoute('/')"
+       class="d-table text-center w-100 mt-5">
+      <img src="assets/img/search.svg"/>
+      <label class="d-block">Enter a login, name or a company your are looking for.</label>
+    </div>
 
     <router-outlet></router-outlet>
   </div>

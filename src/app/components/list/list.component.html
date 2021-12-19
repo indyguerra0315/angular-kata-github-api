@@ -1,0 +1,17 @@
+<div *ngIf="data && data.length > 0">
+
+  <div class="d-flex justify-content-between align-items-center">
+    <label>{{ column1 }}</label>
+    <label>{{ column2 }}</label>
+  </div>
+
+  <div class="list-group">
+    <app-list-item *ngFor="let item of data" [item]="item"></app-list-item>
+  </div>
+</div>
+
+<div *ngIf="data && data.length <= 0" class="d-table text-center w-100 mt-5">
+  <img src="assets/img/zero.svg"/>
+  <label class="d-block">Hmm... We didn't find any users...</label>
+  <a (click)="reset()">RESET</a>
+</div>

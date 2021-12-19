@@ -1,0 +1,12 @@
+.item-card {
+    border: 1px solid #D0DAE1;
+    border-width: 0 0 1px;
+    padding: 12px 0;
+}
+
+.circle {
+  background-color: #AAB9C4;
+  width: 43px;
+  height: 43px;
+  margin-right: 10px;
+}

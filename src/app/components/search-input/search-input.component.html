@@ -1,0 +1,16 @@
+<div class="input-group search-wrapper">
+  <input #searchFilter class="form-control border-right-0 border" type="text"
+    placeholder="Type a user name here" id="example-search-input" value="{{filter}}">
+
+  <span class="input-group-append search-span">
+      <div class="input-group-text search-img-wrapper">
+        <img *ngIf="!isLoading"
+          class="search-icon"
+          src="assets/img/search.svg"
+          (click)="search(searchFilter.value)"/>
+        <img *ngIf="isLoading"
+          class="search-icon"
+          src="assets/img/zero.svg"/>
+      </div>
+  </span>
+</div>

@@ -1,0 +1,16 @@
+.search-span {
+  padding: 4px;
+  border: 1px solid #dee2e6;
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+
+.search-icon {
+  height: 1rem;
+}
+
+.search-wrapper .search-img-wrapper{
+  background-color: #BA10B5;
+  border: none;
+  border-radius: 0.15rem;
+  padding: 0.375rem 0.45rem;
+}

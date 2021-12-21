@@ -1,17 +1,21 @@
+<!-- Items List -->
 <div *ngIf="data && data.length > 0">
 
+  <!-- Columns name -->
   <div class="d-flex justify-content-between align-items-center">
-    <label>{{ column1 | uppercase }}</label>
-    <label>{{ column2 | uppercase }}</label>
+    <label>{{ column1 | uppercase }} <i class="bi bi-chevron-down"></i></label>
+    <label class="subtitle">{{ column2 | uppercase }} <i class="bi bi-chevron-down"></i></label>
   </div>
 
+  <!-- Items -->
   <div class="list-group">
     <app-list-item *ngFor="let item of data" [item]="item"></app-list-item>
   </div>
 </div>
 
+<!-- Research not found data -->
 <div *ngIf="data && data.length <= 0" class="d-table text-center w-100 mt-5">
   <img src="assets/img/zero.svg"/>
   <label class="d-block">Hmm... We didn't find any {{ type }}...</label>
-  <a (click)="reset()">RESET</a>
+  <a class="reset-btn" (click)="reset()">RESET</a>
 </div>

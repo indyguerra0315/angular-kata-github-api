@@ -1,10 +1,18 @@
+<!-- Item card -->
 <div class="item-card d-flex justify-content-between align-items-center">
+
+  <!-- Logo & Code and name -->
   <div class="d-flex justify-content-start">
+    <!-- Logo -->
     <div class="rounded-circle circle"></div>
+
+    <!-- Code and name -->
     <div class="d-flex flex-column">
       <label class="mb-0">{{ item.code }}</label>
       <label class="subtitle">{{ item.name }}</label>
     </div>
   </div>
-  <small class="subtitle">{{ item.count }}</small>
+
+  <!-- Contributions -->
+  <label class="subtitle">{{ item.count }}</label>
 </div>

@@ -10,3 +10,7 @@
   height: 43px;
   margin-right: 10px;
 }
+
+label {
+  font-size: 14px;
+}

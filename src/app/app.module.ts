@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
-import { HomeComponent } from './home/home.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { ListComponent } from './components/list/list.component';
 
@@ -15,7 +14,6 @@ import { ListComponent } from './components/list/list.component';
     AppComponent,
     SearchResultComponent,
     SearchInputComponent,
-    HomeComponent,
     ListItemComponent,
     ListComponent
   ],

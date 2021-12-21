@@ -9,6 +9,7 @@ import { SearchInputComponent } from './components/search-input/search-input.com
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { ListComponent } from './components/list/list.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
+import { CompaniesListComponent } from './components/companies-list/companies-list.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { UsersListComponent } from './components/users-list/users-list.component
     SearchInputComponent,
     ListItemComponent,
     ListComponent,
-    UsersListComponent
+    UsersListComponent,
+    CompaniesListComponent
   ],
   imports: [
     BrowserModule,

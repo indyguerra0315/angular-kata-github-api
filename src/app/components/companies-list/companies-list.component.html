@@ -1,0 +1,8 @@
+<app-list
+  type="companies"
+  column1="Company"
+  column2="People"
+  [data]="companyItems"
+  [totalItems]="companiesData?.total_count"
+  (showMore)="showMoreCompanies()">
+</app-list>

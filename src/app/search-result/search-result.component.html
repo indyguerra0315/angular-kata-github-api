@@ -14,7 +14,8 @@
     <!-- Companies tab -->
     <li class="nav-item" role="presentation">
       <a class="nav-link" id="companies-tab" data-toggle="tab" href="#companies" role="tab" aria-controls="companies" aria-selected="false">
-        {{ 'Companies' | uppercase }} ({{ companiesData?.total_count }})
+        {{ 'Companies' | uppercase }}
+        <!-- ({{ companiesData?.total_count }}) -->
       </a>
       <div class="underline"></div>
     </li>
@@ -28,14 +29,7 @@
 
     <!-- Companies search result -->
     <div class="tab-pane fade" id="companies" role="tabpanel" aria-labelledby="companies-tab">
-      <app-list
-        type="companies"
-        column1="Company"
-        column2="People"
-        [data]="companyItems"
-        [totalItems]="companiesData?.total_count"
-        (viewMore)="viewMoreCompanies()">
-      </app-list>
+      <app-companies-list [filter]="filter"></app-companies-list>
     </div>
   </div>
 

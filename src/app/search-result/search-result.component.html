@@ -5,8 +5,7 @@
     <!-- User tab -->
     <li class="nav-item" role="presentation">
       <a class="nav-link active" id="user-tab" data-toggle="tab" href="#user" role="tab" aria-controls="user" aria-selected="true">
-        {{ 'Users' | uppercase }}
-        <!-- ({{ userData?.total_count }}) -->
+        {{ 'Users' | uppercase }} ({{ totalUsers }})
       </a>
       <div class="underline"></div>
     </li>
@@ -14,8 +13,7 @@
     <!-- Companies tab -->
     <li class="nav-item" role="presentation">
       <a class="nav-link" id="companies-tab" data-toggle="tab" href="#companies" role="tab" aria-controls="companies" aria-selected="false">
-        {{ 'Companies' | uppercase }}
-        <!-- ({{ companiesData?.total_count }}) -->
+        {{ 'Companies' | uppercase }} ({{ totalCompanies }})
       </a>
       <div class="underline"></div>
     </li>
@@ -24,12 +22,12 @@
   <div class="tab-content">
     <!-- Users search result -->
     <div class="tab-pane fade show active" id="user" role="tabpanel" aria-labelledby="user-tab">
-      <app-users-list [filter]="filter"></app-users-list>
+      <app-users-list [filter]="filter" (dataLoaded)="onUserDataLoaded($event)"></app-users-list>
     </div>
 
     <!-- Companies search result -->
     <div class="tab-pane fade" id="companies" role="tabpanel" aria-labelledby="companies-tab">
-      <app-companies-list [filter]="filter"></app-companies-list>
+      <app-companies-list [filter]="filter" (dataLoaded)="onCompaniesDataLoaded($event)"></app-companies-list>
     </div>
   </div>
 

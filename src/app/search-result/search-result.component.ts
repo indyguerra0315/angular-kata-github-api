@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Event, NavigationEnd, Router } from '@angular/router';
 import { of } from 'rxjs';
-import { GithubService } from '../services/github.service';
-import { LoadingService } from '../services/loading.service';
+import { FilterService } from '../services/filter.service';
 
 @Component({
   selector: 'app-search-result',
@@ -12,11 +11,14 @@ import { LoadingService } from '../services/loading.service';
 export class SearchResultComponent implements OnInit {
 
   filter: string = '';
+  totalUsers: number = 0;
+  totalCompanies: number = 0;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private route: ActivatedRoute,
-    private loadingService: LoadingService,
-    private gitHubService: GithubService) {
+    private filterService: FilterService) {
+    this.filter = this.route.snapshot.paramMap.get('filter')!;
   }
 
   ngOnInit(): void {
@@ -27,7 +29,16 @@ export class SearchResultComponent implements OnInit {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         this.filter = this.route.snapshot.paramMap.get('filter')!;
+        this.filterService.updateFilter(this.filter);
       }
     });
+  }
+
+  onUserDataLoaded(totalItems: number) {
+    this.totalUsers = totalItems;
+  }
+
+  onCompaniesDataLoaded(totalItems: number) {
+    this.totalCompanies = totalItems;
   }
 }

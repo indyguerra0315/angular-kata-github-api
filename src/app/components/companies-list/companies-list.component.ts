@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Item } from '../../entities/Item';
 import { GitHubResponse } from '../../entities/GitHubResponse';
 import { GithubService } from '../../services/github.service';
 import { LoadingService } from '../../services/loading.service';
-import { of } from 'rxjs';
+import { of, Subscription } from 'rxjs';
+import { FilterService } from '../../services/filter.service';
 
 @Component({
   selector: 'app-companies-list',
@@ -19,11 +20,29 @@ export class CompaniesListComponent implements OnInit {
   hasError: boolean = false;
   errorMsg: string = '';
 
+  private filterSubscription: Subscription;
+
+  @Output() dataLoaded = new EventEmitter();
+
   constructor(private gitHubService: GithubService,
-    private loadingService: LoadingService) { }
+    private loadingService: LoadingService,
+    private filterService: FilterService) {
+      this.filterSubscription = this.filterService
+        .onChange()
+        .subscribe((filter) => {
+          this.companyItems = [];
+          this.filter = filter;
+          this.getData();
+        });
+    }
 
   ngOnInit(): void {
     this.getData();
+  }
+
+  ngOnDestroy() {
+    // Unsubscribe to ensure no memory leaks
+    this.filterSubscription.unsubscribe();
   }
 
   getData() : void {
@@ -41,9 +60,14 @@ export class CompaniesListComponent implements OnInit {
           this.companiesData = data;
           this.companyItems = [...this.companyItems, ...data.items];
           this.loadingService.toggleLoading(false);
+          this.dataLoaded.emit(this.companiesData.total_count);
+          this.resetError();
         });
       },
-      error: (e) => console.error(e),
+      error: (e) => {
+        console.error(e);
+        this.onError(true,'');
+      },
       // complete: () => console.info('complete')
     });
   }

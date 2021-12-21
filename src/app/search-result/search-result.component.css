@@ -33,11 +33,11 @@
   }
   .search-result-wrapper .tab-content .tab-pane,
   .search-result-wrapper .nav-item {
-    width: 49%;
+    width: 48%;
   }
   .search-result-wrapper .tab-content .tab-pane:first-child,
   .search-result-wrapper .nav-item:first-child {
-    margin-right: 30px;
+    margin-right: 40px;
   }
 }
 

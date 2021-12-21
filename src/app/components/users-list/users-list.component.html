@@ -1,0 +1,9 @@
+<!-- Users list -->
+<app-list
+  type="users"
+  column1="Users"
+  column2="Contributions"
+  [data]="usersItems"
+  [totalItems]="userData?.total_count"
+  (showMore)="showMoreUsers()">
+</app-list>

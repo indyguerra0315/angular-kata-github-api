@@ -8,6 +8,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { ListComponent } from './components/list/list.component';
+import { UsersListComponent } from './components/users-list/users-list.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ListComponent } from './components/list/list.component';
     SearchResultComponent,
     SearchInputComponent,
     ListItemComponent,
-    ListComponent
+    ListComponent,
+    UsersListComponent
   ],
   imports: [
     BrowserModule,

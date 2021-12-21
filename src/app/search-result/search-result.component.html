@@ -5,7 +5,8 @@
     <!-- User tab -->
     <li class="nav-item" role="presentation">
       <a class="nav-link active" id="user-tab" data-toggle="tab" href="#user" role="tab" aria-controls="user" aria-selected="true">
-        {{ 'Users' | uppercase }} ({{ userData?.total_count }})
+        {{ 'Users' | uppercase }}
+        <!-- ({{ userData?.total_count }}) -->
       </a>
       <div class="underline"></div>
     </li>
@@ -22,12 +23,19 @@
   <div class="tab-content">
     <!-- Users search result -->
     <div class="tab-pane fade show active" id="user" role="tabpanel" aria-labelledby="user-tab">
-      <app-list type="users" column1="Users" column2="Contributions" [data]="userData?.items" ></app-list>
+      <app-users-list [filter]="filter"></app-users-list>
     </div>
 
     <!-- Companies search result -->
     <div class="tab-pane fade" id="companies" role="tabpanel" aria-labelledby="companies-tab">
-      <app-list type="companies" column1="Company" column2="People" [data]="companiesData?.items" ></app-list>
+      <app-list
+        type="companies"
+        column1="Company"
+        column2="People"
+        [data]="companyItems"
+        [totalItems]="companiesData?.total_count"
+        (viewMore)="viewMoreCompanies()">
+      </app-list>
     </div>
   </div>
 

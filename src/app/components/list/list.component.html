@@ -1,8 +1,8 @@
 <div *ngIf="data && data.length > 0">
 
   <div class="d-flex justify-content-between align-items-center">
-    <label>{{ column1 }}</label>
-    <label>{{ column2 }}</label>
+    <label>{{ column1 | uppercase }}</label>
+    <label>{{ column2 | uppercase }}</label>
   </div>
 
   <div class="list-group">
@@ -12,6 +12,6 @@
 
 <div *ngIf="data && data.length <= 0" class="d-table text-center w-100 mt-5">
   <img src="assets/img/zero.svg"/>
-  <label class="d-block">Hmm... We didn't find any users...</label>
+  <label class="d-block">Hmm... We didn't find any {{ type }}...</label>
   <a (click)="reset()">RESET</a>
 </div>

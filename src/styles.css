@@ -1,0 +1,33 @@
+/* Basic style */
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #152837;
+  font-size: 16px;
+}
+
+h2 {
+  font-weight: 800;
+  letter-spacing: 2px;
+  font-size: 32px;
+}
+label {
+  font-weight: 600;
+}
+input.form-control {
+  height: 48px;
+  font-weight: 400;
+}
+
+input:focus,
+input:hover,
+input:active,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+label.subtitle {
+  color: #6B8294;
+  font-weight: 400;
+}

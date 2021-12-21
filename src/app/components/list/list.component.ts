@@ -11,6 +11,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class ListComponent implements OnInit {
 
+  @Input() type!: string;
   @Input() column1!: string;
   @Input() column2!: string;
   @Input() data!: Item[] | undefined;

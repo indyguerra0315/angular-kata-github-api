@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, switchMap, forkJoin } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { GitHubResponse } from '../entities/GitHubResponse';
@@ -17,19 +17,51 @@ export class GithubService {
   constructor(private http: HttpClient) { }
 
   getUsers(filter: string, page: number = 1 ): Observable<GitHubResponse> {
+
     const url = `${this.apiUrl}${this.apiSearchUrl}?q=${filter} in:name type:user&per_page=4&page=${page}`;
+
     return this.http.get<any>(url)
       .pipe(
-        map((response: any) => {
-          let items: any[] = response.items;
+        switchMap((response: any) => {
 
-          let parsedItems = items.map(item => new Item(item.id, item.login));
-          response.items = parsedItems;
+            let getUsersData = response.items.map((user: any) => this.getUser(user));
+            let getContribData = response.items.map((user: any) => this.getUserContrib(user));
 
-          return response;
-        }),
-        catchError(this.handleError)
+            return forkJoin(getUsersData)
+              .pipe(
+                map((itemsMerged: any) => {
+
+                  let parsedItems = itemsMerged.map((item: any) => new Item(item.id, item.login, item.name, item.public_repos));
+                  response.items = parsedItems;
+
+                  return response;
+                })
+              );
+        })
       );
+    // .pipe(
+    //   switchMap((res: any) => {
+    //     forkJoin(res.tracks.items.map(track => this.trackService.fetchTrack(track.id))).pipe(
+    //       map(tracks => ({
+    //         id: res.id,
+    //         name: res.name,
+    //         description: res.description,
+    //         tracks: tracks
+    //       }))
+    //     )
+    //   })
+    // )
+    //   .pipe(
+    //     map((response: any) => {
+    //       let items: any[] = response.items;
+
+    //       let parsedItems = items.map(item => new Item(item.id, item.login));
+    //       response.items = parsedItems;
+
+    //       return response;
+    //     }),
+    //     catchError(this.handleError)
+    //   );
   }
 
   getCompanies(filter: string, page: number = 1 ): Observable<GitHubResponse> {
@@ -51,6 +83,18 @@ export class GithubService {
   getUser(user: GitHubUser): Observable<GitHubUser> {
     const url = `${this.apiUrl}${this.apiUserUrl}/${user.login}`;
     return this.http.get<GitHubUser>(url);
+  }
+
+  getUserContrib(user: GitHubUser): Observable<any> {
+    const url = `${this.apiUrl}${this.apiUserUrl}/${user.login}/events`;
+    return this.http.get<any>(url)
+      .pipe(
+        map((response: any) => {
+          return {
+            contrib: response.length
+          };
+        })
+      );
   }
 
   private handleError(error: HttpErrorResponse) {

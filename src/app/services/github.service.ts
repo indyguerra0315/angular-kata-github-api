@@ -34,34 +34,13 @@ export class GithubService {
                   let parsedItems = itemsMerged.map((item: any) => new Item(item.id, item.login, item.name, item.public_repos));
                   response.items = parsedItems;
 
-                  return response;
-                })
+                  return new GitHubResponse(response.total_count, response.items, page);
+                }),
+                catchError(this.handleError)
               );
-        })
+        }),
+        catchError(this.handleError)
       );
-    // .pipe(
-    //   switchMap((res: any) => {
-    //     forkJoin(res.tracks.items.map(track => this.trackService.fetchTrack(track.id))).pipe(
-    //       map(tracks => ({
-    //         id: res.id,
-    //         name: res.name,
-    //         description: res.description,
-    //         tracks: tracks
-    //       }))
-    //     )
-    //   })
-    // )
-    //   .pipe(
-    //     map((response: any) => {
-    //       let items: any[] = response.items;
-
-    //       let parsedItems = items.map(item => new Item(item.id, item.login));
-    //       response.items = parsedItems;
-
-    //       return response;
-    //     }),
-    //     catchError(this.handleError)
-    //   );
   }
 
   getCompanies(filter: string, page: number = 1 ): Observable<GitHubResponse> {
@@ -74,7 +53,7 @@ export class GithubService {
           let parsedItems = items.map(item => new Item(item.id, item.login));
           response.items = parsedItems;
 
-          return response;
+          return new GitHubResponse(response.total_count, response.items, page);
         }),
         catchError(this.handleError)
       );

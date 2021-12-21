@@ -4,3 +4,19 @@
   margin-top: 10px;
   cursor: pointer;
 }
+
+.list-group {
+  border-top: 1px solid #D0DAE1;
+  border-radius: inherit;
+  height: 290px;
+  overflow: auto;
+  margin-top: 12px;
+}
+
+
+.show-more-btn {
+  color: #446178;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 1px;
+}

@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { GitHubResponse } from 'src/app/entities/GitHubResponse';
 import { Item } from 'src/app/entities/Item';
 import { LoadingService } from 'src/app/services/loading.service';
 
@@ -14,7 +13,10 @@ export class ListComponent implements OnInit {
   @Input() type!: string;
   @Input() column1!: string;
   @Input() column2!: string;
-  @Input() data!: Item[] | undefined;
+  @Input() data: Item[] = [];
+  @Input() totalItems!: number | undefined;
+
+  @Output() showMore = new EventEmitter();
 
   constructor(private router: Router,
     private loadingService: LoadingService) { }
@@ -25,6 +27,10 @@ export class ListComponent implements OnInit {
   reset(): void {
     this.loadingService.toggleLoading(false);
     this.router.navigate(['/']);
+  }
+
+  onShowMore() {
+    this.showMore.emit();
   }
 
 }

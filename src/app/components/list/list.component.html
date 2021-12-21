@@ -1,5 +1,5 @@
 <!-- Items List -->
-<div *ngIf="data && data.length > 0">
+<div *ngIf="data.length > 0">
 
   <!-- Columns name -->
   <div class="d-flex justify-content-between align-items-center">
@@ -13,8 +13,15 @@
   </div>
 </div>
 
+<!-- Show more button -->
+<a *ngIf="totalItems && totalItems > 4 && totalItems > data.length"
+  class="d-flex justify-content-center show-more-btn"
+  (click)="onShowMore()">
+  {{'Show More' | uppercase }}
+</a>
+
 <!-- Research not found data -->
-<div *ngIf="data && data.length <= 0" class="d-table text-center w-100 mt-5">
+<div *ngIf="data.length <= 0" class="d-table text-center w-100 mt-5">
   <img src="assets/img/zero.svg"/>
   <label class="d-block">Hmm... We didn't find any {{ type }}...</label>
   <a class="reset-btn" (click)="reset()">RESET</a>

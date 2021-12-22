@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { FilterService } from '../../services/filter.service';
 import { LoadingService } from '../../services/loading.service';
 
 @Component({
@@ -10,29 +11,35 @@ import { LoadingService } from '../../services/loading.service';
 })
 export class SearchInputComponent implements OnInit {
 
-  filter: string = 'vggg';
+  filter: string = '';
   isLoading: boolean = false;
   subscription: Subscription;
 
+  private filterSubscription: Subscription;
+
   constructor(private router: Router,
     private loadingService: LoadingService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private filterService: FilterService
   ) {
     this.subscription = this.loadingService
       .onToggle()
       .subscribe((value) => (this.isLoading = value));
+
+    this.filterSubscription = this.filterService
+      .onChange()
+      .subscribe((filter) => {
+        this.filter = filter;
+      });
   }
 
   ngOnInit(): void {
-    // this.route.queryParams.subscribe(params => {
-    //   this.filter = params['filter'];
-    // });
-    this.filter = this.route.snapshot.paramMap.get('filter')!;
   }
 
   ngOnDestroy() {
     // Unsubscribe to ensure no memory leaks
     this.subscription.unsubscribe();
+    this.filterSubscription.unsubscribe();
   }
 
   search(event: string): void {

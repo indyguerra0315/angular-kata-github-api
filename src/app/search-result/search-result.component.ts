@@ -19,6 +19,7 @@ export class SearchResultComponent implements OnInit {
     private route: ActivatedRoute,
     private filterService: FilterService) {
     this.filter = this.route.snapshot.paramMap.get('filter')!;
+    this.filterService.updateFilter(this.filter);
   }
 
   ngOnInit(): void {

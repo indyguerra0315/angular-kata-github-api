@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FilterService } from '../../services/filter.service';
 import { LoadingService } from '../../services/loading.service';
@@ -19,7 +19,6 @@ export class SearchInputComponent implements OnInit {
 
   constructor(private router: Router,
     private loadingService: LoadingService,
-    private route: ActivatedRoute,
     private filterService: FilterService
   ) {
     this.subscription = this.loadingService

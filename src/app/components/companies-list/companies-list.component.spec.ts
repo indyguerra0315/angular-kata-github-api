@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { LoadingService } from '../../services/loading.service';
+import { GithubService } from '../../services/github.service';
 
 import { CompaniesListComponent } from './companies-list.component';
+import { FilterService } from '../../services/filter.service';
 
 describe('CompaniesListComponent', () => {
   let component: CompaniesListComponent;
@@ -8,6 +12,8 @@ describe('CompaniesListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [ HttpClientTestingModule ],
+      providers: [ GithubService, LoadingService, FilterService ],
       declarations: [ CompaniesListComponent ]
     })
     .compileComponents();

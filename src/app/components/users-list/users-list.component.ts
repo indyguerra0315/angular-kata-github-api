@@ -28,6 +28,7 @@ export class UsersListComponent implements OnInit {
   constructor(private gitHubService: GithubService,
     private loadingService: LoadingService,
     private filterService: FilterService) {
+
       this.filterSubscription = this.filterService
         .onChange()
         .subscribe((filter) => {
@@ -35,7 +36,7 @@ export class UsersListComponent implements OnInit {
           this.filter = filter;
           this.getData();
         });
-     }
+  }
 
   ngOnInit(): void {
     this.getData();
@@ -57,7 +58,7 @@ export class UsersListComponent implements OnInit {
       next: (observer) => {
         observer.subscribe(
           (data) => {
-            console.log(data);
+            console.log('user-list on load',data);
             this.userData = data;
             this.usersItems = [...this.usersItems, ...data.items];
             this.loadingService.toggleLoading(false);
@@ -66,7 +67,7 @@ export class UsersListComponent implements OnInit {
         });
       },
       error: (e) => {
-        console.error(e);
+        console.error('user-list on error',e);
         this.onError(true,'');
       },
       // complete: () => console.info('complete')

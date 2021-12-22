@@ -56,7 +56,7 @@ export class CompaniesListComponent implements OnInit {
       next: (observer) => {
         observer.subscribe(
           (data) => {
-          console.log(data);
+          console.log('companies-list',data);
           this.companiesData = data;
           this.companyItems = [...this.companyItems, ...data.items];
           this.loadingService.toggleLoading(false);

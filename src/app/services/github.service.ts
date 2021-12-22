@@ -25,7 +25,6 @@ export class GithubService {
         switchMap((response: any) => {
 
             let getUsersData = response.items.map((user: any) => this.getUser(user));
-            let getContribData = response.items.map((user: any) => this.getUserContrib(user));
 
             return forkJoin(getUsersData)
               .pipe(
@@ -35,8 +34,9 @@ export class GithubService {
                   response.items = parsedItems;
 
                   return new GitHubResponse(response.total_count, response.items, page);
-                }),
-                catchError(this.handleError)
+                })
+                // ,
+                // catchError(this.handleError)
               );
         }),
         catchError(this.handleError)
@@ -62,18 +62,6 @@ export class GithubService {
   getUser(user: GitHubUser): Observable<GitHubUser> {
     const url = `${this.apiUrl}${this.apiUserUrl}/${user.login}`;
     return this.http.get<GitHubUser>(url);
-  }
-
-  getUserContrib(user: GitHubUser): Observable<any> {
-    const url = `${this.apiUrl}${this.apiUserUrl}/${user.login}/events`;
-    return this.http.get<any>(url)
-      .pipe(
-        map((response: any) => {
-          return {
-            contrib: response.length
-          };
-        })
-      );
   }
 
   private handleError(error: HttpErrorResponse) {

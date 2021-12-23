@@ -20,3 +20,17 @@
   font-weight: 600;
   letter-spacing: 1px;
 }
+
+/* Sort column */
+.sort-hovering {
+  cursor: pointer;
+}
+
+i.asc, i.desc {
+  display: none;
+}
+
+.sort.sort-asc i.asc,
+.sort:not(.sort-asc) i.desc  {
+  display: initial;
+}

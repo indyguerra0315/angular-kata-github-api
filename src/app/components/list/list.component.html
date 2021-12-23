@@ -3,8 +3,12 @@
 
   <!-- Columns name -->
   <div class="d-flex justify-content-between align-items-center">
-    <label>{{ column1 | uppercase }} <i class="bi bi-chevron-down"></i></label>
-    <label class="subtitle">{{ column2 | uppercase }} <i class="bi bi-chevron-down"></i></label>
+    <label (click)="orderByName('name', !ascSortNameColumn)" [appSort]="ascSortNameColumn">
+      {{ column1 | uppercase }} <i class="bi bi-chevron-down desc"></i> <i class="bi bi-chevron-up asc"></i>
+    </label>
+    <label (click)="orderByName('count', !ascSortCountColumn)" [appSort]="ascSortCountColumn" class="subtitle">
+      {{ column2 | uppercase }} <i class="bi bi-chevron-down desc"></i> <i class="bi bi-chevron-up asc"></i>
+    </label>
   </div>
 
   <!-- Items -->

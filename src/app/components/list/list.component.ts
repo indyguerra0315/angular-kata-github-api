@@ -18,6 +18,10 @@ export class ListComponent implements OnInit {
 
   @Output() showMore = new EventEmitter();
 
+  // let sort['ascSortNameColumn', 'ascSortCountColumn'] = [true, true];
+  ascSortNameColumn: boolean = true;
+  ascSortCountColumn: boolean = true;
+
   constructor(private router: Router,
     private loadingService: LoadingService) { }
 
@@ -31,6 +35,20 @@ export class ListComponent implements OnInit {
 
   onShowMore() {
     this.showMore.emit();
+  }
+
+  orderByName(columnName: string, ascSort: boolean): void {
+    this.data.sort((a: Item, b: Item) => {
+      const keyTyped = columnName as keyof typeof a;
+
+      // Return -1 if any element data are empty
+      if ( !a[keyTyped] || !b[keyTyped] ) {
+        return -1;
+      }
+
+      console.log(a[keyTyped], b[keyTyped]);
+      return a[keyTyped] && b[keyTyped] ? -1 : 1;
+    });
   }
 
 }

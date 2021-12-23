@@ -30,7 +30,12 @@ export class GithubService {
               .pipe(
                 map((itemsMerged: any) => {
 
-                  let parsedItems = itemsMerged.map((item: any) => new Item(item.id, item.login, item.name, item.public_repos));
+                  let parsedItems = itemsMerged.map(
+                    (item: any) => {
+                      const newItem:Item = {id:item.id, code:item.login, name:item.name, count:item.public_repos};
+                      return newItem;
+                    }
+                  );
                   response.items = parsedItems;
 
                   return new GitHubResponse(response.total_count, response.items, page);
@@ -49,7 +54,10 @@ export class GithubService {
         map((response: any) => {
           let items: any[] = response.items;
 
-          let parsedItems = items.map(item => new Item(item.id, item.login));
+          let parsedItems = items.map(item => {
+            const newItem:Item = {id:item.id, code:item.login};
+            return newItem;
+          });
           response.items = parsedItems;
 
           return new GitHubResponse(response.total_count, response.items, page);

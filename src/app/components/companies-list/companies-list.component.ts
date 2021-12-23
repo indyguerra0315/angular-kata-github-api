@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Item } from '../../entities/Item';
+import { Item } from '../../contracts/Item';
 import { GitHubResponse } from '../../entities/GitHubResponse';
-import { GithubService } from '../../services/github.service';
 import { LoadingService } from '../../services/loading.service';
 import { of, Subscription } from 'rxjs';
 import { FilterService } from '../../services/filter.service';
+import { GithubOrgsService } from '../../services/github-orgs.service';
 
 @Component({
   selector: 'app-companies-list',
@@ -24,17 +24,18 @@ export class CompaniesListComponent implements OnInit {
 
   @Output() dataLoaded = new EventEmitter();
 
-  constructor(private gitHubService: GithubService,
+  constructor(private gitHubOrgService: GithubOrgsService,
     private loadingService: LoadingService,
     private filterService: FilterService) {
-      this.filterSubscription = this.filterService
-        .onChange()
-        .subscribe((filter) => {
-          this.companyItems = [];
-          this.filter = filter;
-          this.getData();
-        });
-    }
+
+    this.filterSubscription = this.filterService
+      .onChange()
+      .subscribe((filter) => {
+        this.companyItems = [];
+        this.filter = filter;
+        this.getData();
+      });
+  }
 
   ngOnInit(): void {
     this.getData();
@@ -45,28 +46,26 @@ export class CompaniesListComponent implements OnInit {
     this.filterSubscription.unsubscribe();
   }
 
-  getData() : void {
+  getData(): void {
     this.loadingService.toggleLoading(true);
 
     this.loadCompaniesData();
   }
 
   loadCompaniesData(page: number = 1): void {
-    of(this.gitHubService.getCompanies(this.filter, page)).subscribe({
+    of(this.gitHubOrgService.getCompanies(this.filter, page)).subscribe({
       next: (observer) => {
         observer.subscribe(
           (data) => {
-          console.log('companies-list',data);
-          this.companiesData = data;
-          this.companyItems = [...this.companyItems, ...data.items];
-          this.loadingService.toggleLoading(false);
-          this.dataLoaded.emit(this.companiesData.total_count);
-          this.resetError();
-        });
+            // console.log('companies-list', data);
+            this.companiesData = data;
+            this.companyItems = [...this.companyItems, ...data.items];
+            this.loadingService.toggleLoading(false);
+            this.dataLoaded.emit(this.companiesData.total_count);
+          });
       },
       error: (e) => {
-        console.error(e);
-        this.onError(true,'');
+        // console.error('loadCompaniesData ',e);
       },
       // complete: () => console.info('complete')
     });
@@ -74,14 +73,5 @@ export class CompaniesListComponent implements OnInit {
 
   showMoreCompanies() {
     this.loadCompaniesData(this.companiesData.page + 1);
-  }
-
-  resetError() {
-    this.onError(false, '');
-  }
-
-  onError(hasError: boolean, errormsg: string) {
-    this.hasError = hasError;
-    this.errorMsg = errormsg;
   }
 }

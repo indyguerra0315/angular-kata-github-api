@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { Item } from 'src/app/entities/Item';
-import { LoadingService } from 'src/app/services/loading.service';
+import { Item } from '../../contracts/Item';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-list',
@@ -42,7 +42,7 @@ export class ListComponent implements OnInit {
       const keyTyped = columnName as keyof typeof a;
 
       // Return -1 if any element data are empty
-      if ( !a[keyTyped] || !b[keyTyped] ) {
+      if (!a[keyTyped] || !b[keyTyped]) {
         return -1;
       }
 

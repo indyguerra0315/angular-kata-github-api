@@ -1,5 +1,5 @@
 export interface GitHubOrganization {
-  id: string,
+  id: number,
   login: string,
   name?: string,
   followers?: number

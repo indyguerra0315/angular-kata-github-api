@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoadingService } from '../../services/loading.service';
-import { GithubService } from '../../services/github.service';
 
 import { CompaniesListComponent } from './companies-list.component';
 import { FilterService } from '../../services/filter.service';
-import {} from 'jasmine';
+import { } from 'jasmine';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { GithubOrgsService } from 'src/app/services/github-orgs.service';
 
 describe('CompaniesListComponent', () => {
   let component: CompaniesListComponent;
@@ -14,12 +14,12 @@ describe('CompaniesListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
-      providers: [ GithubService, LoadingService, FilterService ],
-      declarations: [ CompaniesListComponent ],
+      imports: [HttpClientTestingModule],
+      providers: [GithubOrgsService, LoadingService, FilterService],
+      declarations: [CompaniesListComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

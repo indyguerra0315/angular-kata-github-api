@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Item } from '../../entities/Item';
+import { Item } from '../../contracts/Item';
 import { GitHubResponse } from '../../entities/GitHubResponse';
 import { GithubService } from '../../services/github.service';
 import { LoadingService } from '../../services/loading.service';
@@ -18,9 +18,6 @@ export class UsersListComponent implements OnInit {
   userData!: GitHubResponse;
   usersItems: Item[] = [];
 
-  hasError: boolean = false;
-  errorMsg: string = '';
-
   private filterSubscription: Subscription;
 
   @Output() dataLoaded = new EventEmitter();
@@ -29,13 +26,13 @@ export class UsersListComponent implements OnInit {
     private loadingService: LoadingService,
     private filterService: FilterService) {
 
-      this.filterSubscription = this.filterService
-        .onChange()
-        .subscribe((filter) => {
-          this.usersItems = [];
-          this.filter = filter;
-          this.getData();
-        });
+    this.filterSubscription = this.filterService
+      .onChange()
+      .subscribe((filter) => {
+        this.usersItems = [];
+        this.filter = filter;
+        this.getData();
+      });
   }
 
   ngOnInit(): void {
@@ -47,7 +44,7 @@ export class UsersListComponent implements OnInit {
     this.filterSubscription.unsubscribe();
   }
 
-  getData() : void {
+  getData(): void {
     this.loadingService.toggleLoading(true);
 
     this.loadUsersData();
@@ -58,17 +55,17 @@ export class UsersListComponent implements OnInit {
       next: (observer) => {
         observer.subscribe(
           (data) => {
-            console.log('user-list on load',data);
+            // debugger;
+            // console.log('user-list on load', data);
             this.userData = data;
             this.usersItems = [...this.usersItems, ...data.items];
             this.loadingService.toggleLoading(false);
             this.dataLoaded.emit(this.userData.total_count);
-            this.resetError();
-        });
+          });
       },
       error: (e) => {
-        console.error('user-list on error',e);
-        this.onError(true,'A data error occurred, please try again later.');
+        // debugger;
+        // console.error('user-list on error', e);
       },
       // complete: () => console.info('complete')
     });
@@ -76,15 +73,6 @@ export class UsersListComponent implements OnInit {
 
   showMoreUsers() {
     this.loadUsersData(this.userData.page + 1);
-  }
-
-  resetError() {
-    this.onError(false, '');
-  }
-
-  onError(hasError: boolean, errormsg: string) {
-    this.hasError = hasError;
-    this.errorMsg = errormsg;
   }
 
 }

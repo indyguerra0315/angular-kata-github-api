@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Item } from '../../entities/Item';
+import { Item } from '../../contracts/Item';
 
 @Component({
   selector: 'app-list-item',

@@ -4,6 +4,7 @@ import { FilterService } from '../../services/filter.service';
 import { LoadingService } from '../../services/loading.service';
 
 import { SearchInputComponent } from './search-input.component';
+import {} from 'jasmine';
 
 describe('SearchInputComponent', () => {
   let component: SearchInputComponent;

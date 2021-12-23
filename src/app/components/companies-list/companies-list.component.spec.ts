@@ -5,6 +5,7 @@ import { GithubService } from '../../services/github.service';
 
 import { CompaniesListComponent } from './companies-list.component';
 import { FilterService } from '../../services/filter.service';
+import {} from 'jasmine';
 
 describe('CompaniesListComponent', () => {
   let component: CompaniesListComponent;

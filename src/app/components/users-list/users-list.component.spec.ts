@@ -5,6 +5,7 @@ import { FilterService } from '../../services/filter.service';
 import { LoadingService } from '../../services/loading.service';
 
 import { UsersListComponent } from './users-list.component';
+import {} from 'jasmine';
 
 describe('UsersListComponent', () => {
   let component: UsersListComponent;

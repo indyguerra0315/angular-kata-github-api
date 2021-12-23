@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { LoadingService } from '../../services/loading.service';
 
 import { ListComponent } from './list.component';
+import {} from 'jasmine';
 
 describe('ListComponent', () => {
   let component: ListComponent;

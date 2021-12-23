@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { FilterService } from '../services/filter.service';
 
 import { SearchResultComponent } from './search-result.component';
+import {} from 'jasmine';
 
 describe('SearchResultComponent', () => {
   let component: SearchResultComponent;

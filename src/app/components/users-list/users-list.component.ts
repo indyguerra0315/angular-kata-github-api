@@ -68,7 +68,7 @@ export class UsersListComponent implements OnInit {
       },
       error: (e) => {
         console.error('user-list on error',e);
-        this.onError(true,'');
+        this.onError(true,'A data error occurred, please try again later.');
       },
       // complete: () => console.info('complete')
     });

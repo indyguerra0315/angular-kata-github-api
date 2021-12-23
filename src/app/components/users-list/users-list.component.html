@@ -7,3 +7,5 @@
   [totalItems]="userData?.total_count"
   (showMore)="showMoreUsers()">
 </app-list>
+
+<p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>

@@ -2,35 +2,35 @@
 body {
   font-family: 'Open Sans', sans-serif;
   color: #152837;
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 h2 {
   font-weight: 800;
   letter-spacing: 2px;
-  font-size: 32px;
+  font-size: 2rem;
 }
 label {
-  font-size: 15px;
+  font-size: 0.9rem;
   font-weight: 600;
   margin: 0;
 }
 input.form-control {
-  height: 48px;
+  height: 2.9rem;
   font-weight: 400;
   border-color: #AAB9C4;
-}
-
-input:focus,
-input:hover,
-input:active,
-select:focus,
-textarea:focus,
-button:focus {
-    outline: none;
 }
 
 label.subtitle {
   color: #6B8294;
   font-weight: 400;
+}
+
+/* Normalize*/
+input.form-control:focus,
+select:focus,
+textarea:focus,
+button.btn:focus,
+:focus {
+    box-shadow: none;
 }

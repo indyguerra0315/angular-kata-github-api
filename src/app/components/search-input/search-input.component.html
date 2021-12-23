@@ -1,16 +1,21 @@
-<div class="input-group search-wrapper">
-  <input #searchFilter class="form-control border-right-0" type="text"
-    placeholder="Type a user name here" id="example-search-input" [value]="filter">
+<form
+  [formGroup]="form"
+  (ngSubmit)="search()">
+    <div class="input-group search-wrapper">
+    <input name="filter" id="filter" formControlName="filter" class="form-control border-right-0" type="text"
+      placeholder="Type a user name here" id="example-search-input" [value]="filter">
 
-  <span class="input-group-append search-span">
-      <div class="input-group-text search-img-wrapper">
+    <span class="input-group-append search-span" type="submit">
 
-        <!-- <img *ngIf="!isLoading"
+      <!-- <img *ngIf="!isLoading"
+        class="search-icon"
+        src="assets/img/search.svg"
+        (click)="search(searchFilter.value)"/> -->
+
+      <button class="btn btn-sm btn-pink" type="submit" [disabled]="!form.valid">
+        <svg *ngIf="!isLoading"
           class="search-icon"
-          src="assets/img/search.svg"
-          (click)="search(searchFilter.value)"/> -->
-
-        <svg *ngIf="!isLoading" class="search-icon" (click)="search(searchFilter.value)" width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
           <title>search</title>
           <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g id="375---1" transform="translate(-155.000000, -256.000000)" fill="#D0DAE1" fill-rule="nonzero">
@@ -22,6 +27,8 @@
         <div *ngIf="isLoading" class="spinner-border text-light" role="status">
           <span class="sr-only text-white">Loading...</span>
         </div>
-      </div>
-  </span>
-</div>
+      </button>
+    </span>
+
+  </div>
+</form>

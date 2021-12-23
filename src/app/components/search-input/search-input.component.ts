@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FilterService } from '../../services/filter.service';
@@ -11,13 +12,15 @@ import { LoadingService } from '../../services/loading.service';
 })
 export class SearchInputComponent implements OnInit {
 
+  form: FormGroup = new FormGroup({});
   filter: string = '';
   isLoading: boolean = false;
   subscription: Subscription;
 
   private filterSubscription: Subscription;
 
-  constructor(private router: Router,
+  constructor(private formBuilder: FormBuilder,
+    private router: Router,
     private loadingService: LoadingService,
     private filterService: FilterService
   ) {
@@ -33,6 +36,9 @@ export class SearchInputComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      filter: this.formBuilder.control('', Validators.compose([Validators.required]))
+    });
   }
 
   ngOnDestroy() {
@@ -41,8 +47,8 @@ export class SearchInputComponent implements OnInit {
     this.filterSubscription.unsubscribe();
   }
 
-  search(event: string): void {
-    this.router.navigate(['search',  event ]);
+  search(): void {
+    this.router.navigate(['search',  this.form.value.filter ]);
   }
 
 }

@@ -5,6 +5,7 @@ import { LoadingService } from '../../services/loading.service';
 
 import { SearchInputComponent } from './search-input.component';
 import {} from 'jasmine';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('SearchInputComponent', () => {
   let component: SearchInputComponent;
@@ -12,7 +13,7 @@ describe('SearchInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ RouterTestingModule ],
+      imports: [ ReactiveFormsModule, FormsModule, RouterTestingModule ],
       providers: [ LoadingService, FilterService ],
       declarations: [ SearchInputComponent ]
     })
@@ -27,5 +28,27 @@ describe('SearchInputComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should return invalid form', () => {
+    const fixture = TestBed.createComponent(SearchInputComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+
+    const userName = app.form.controls['filter'];
+    userName.setValue('');
+
+    expect(app.form.invalid).toBeTrue();
+  });
+
+  it('should return valid form', () => {
+    const fixture = TestBed.createComponent(SearchInputComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+
+    let userName = app.form.controls['filter'];
+    userName.setValue('john');
+
+    expect(app.form.invalid).toBeFalse();
   });
 });

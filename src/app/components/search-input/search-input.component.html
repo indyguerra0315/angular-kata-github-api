@@ -3,7 +3,7 @@
   (ngSubmit)="search()">
     <div class="input-group search-wrapper">
     <input name="filter" id="filter" formControlName="filter" class="form-control border-right-0" type="text"
-      placeholder="Type a user name here" id="example-search-input" [value]="filter">
+      placeholder="Type a user name here" id="example-search-input" [value]="form.value.filter.value">
 
     <span class="input-group-append search-span" type="submit">
 

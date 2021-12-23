@@ -13,7 +13,7 @@ import { LoadingService } from '../../services/loading.service';
 export class SearchInputComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
-  filter: string = '';
+  
   isLoading: boolean = false;
   subscription: Subscription;
 
@@ -31,7 +31,7 @@ export class SearchInputComponent implements OnInit {
     this.filterSubscription = this.filterService
       .onChange()
       .subscribe((filter) => {
-        this.filter = filter;
+        this.form.controls['filter'].setValue(filter);
       });
   }
 

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +11,7 @@ import { ListComponent } from './components/list/list.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { CompaniesListComponent } from './components/companies-list/companies-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpErrorInterceptor } from './interceptor/httpErrorInterceptor';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

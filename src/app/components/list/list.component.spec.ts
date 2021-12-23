@@ -4,6 +4,7 @@ import { LoadingService } from '../../services/loading.service';
 
 import { ListComponent } from './list.component';
 import {} from 'jasmine';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('ListComponent', () => {
   let component: ListComponent;
@@ -11,11 +12,11 @@ describe('ListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ RouterTestingModule ],
-      providers: [ LoadingService ],
-      declarations: [ ListComponent ]
-    })
-    .compileComponents();
+      imports: [RouterTestingModule],
+      providers: [LoadingService],
+      declarations: [ListComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    }).compileComponents();
   });
 
   beforeEach(() => {

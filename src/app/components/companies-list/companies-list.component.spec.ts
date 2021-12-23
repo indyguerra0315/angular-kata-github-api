@@ -6,6 +6,7 @@ import { GithubService } from '../../services/github.service';
 import { CompaniesListComponent } from './companies-list.component';
 import { FilterService } from '../../services/filter.service';
 import {} from 'jasmine';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('CompaniesListComponent', () => {
   let component: CompaniesListComponent;
@@ -15,7 +16,8 @@ describe('CompaniesListComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule ],
       providers: [ GithubService, LoadingService, FilterService ],
-      declarations: [ CompaniesListComponent ]
+      declarations: [ CompaniesListComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   });

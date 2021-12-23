@@ -6,6 +6,7 @@ import { LoadingService } from '../../services/loading.service';
 
 import { UsersListComponent } from './users-list.component';
 import {} from 'jasmine';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('UsersListComponent', () => {
   let component: UsersListComponent;
@@ -15,7 +16,8 @@ describe('UsersListComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ HttpClientTestingModule ],
       providers: [ GithubService, LoadingService, FilterService ],
-      declarations: [ UsersListComponent ]
+      declarations: [ UsersListComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   });

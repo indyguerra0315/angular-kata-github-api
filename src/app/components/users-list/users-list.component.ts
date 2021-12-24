@@ -31,12 +31,12 @@ export class UsersListComponent implements OnInit {
       .subscribe((filter) => {
         this.usersItems = [];
         this.filter = filter;
-        this.getData();
+        this.loadUsersData();
       });
   }
 
   ngOnInit(): void {
-    this.getData();
+    this.loadUsersData();
   }
 
   ngOnDestroy() {
@@ -44,13 +44,9 @@ export class UsersListComponent implements OnInit {
     this.filterSubscription.unsubscribe();
   }
 
-  getData(): void {
+  loadUsersData(page: number = 1): void {
     this.loadingService.toggleLoading(true);
 
-    this.loadUsersData();
-  }
-
-  loadUsersData(page: number = 1): void {
     of(this.gitHubService.getUsers(this.filter, page)).subscribe({
       next: (observer) => {
         observer.subscribe(

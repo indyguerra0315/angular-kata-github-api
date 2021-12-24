@@ -33,12 +33,12 @@ export class CompaniesListComponent implements OnInit {
       .subscribe((filter) => {
         this.companyItems = [];
         this.filter = filter;
-        this.getData();
+        this.loadCompaniesData();
       });
   }
 
   ngOnInit(): void {
-    this.getData();
+    this.loadCompaniesData();
   }
 
   ngOnDestroy() {
@@ -46,13 +46,9 @@ export class CompaniesListComponent implements OnInit {
     this.filterSubscription.unsubscribe();
   }
 
-  getData(): void {
+  loadCompaniesData(page: number = 1): void {
     this.loadingService.toggleLoading(true);
 
-    this.loadCompaniesData();
-  }
-
-  loadCompaniesData(page: number = 1): void {
     of(this.gitHubOrgService.getCompanies(this.filter, page)).subscribe({
       next: (observer) => {
         observer.subscribe(

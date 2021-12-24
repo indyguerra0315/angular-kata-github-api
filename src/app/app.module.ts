@@ -12,7 +12,7 @@ import { UsersListComponent } from './components/users-list/users-list.component
 import { CompaniesListComponent } from './components/companies-list/companies-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpErrorInterceptor } from './shared/interceptor/httpErrorInterceptor';
-import { SortDirective } from './directive/sort.directive';
+import { SortDirective } from './shared/directive/sort.directive';
 
 @NgModule({
   declarations: [

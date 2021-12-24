@@ -3,7 +3,7 @@ import { Item } from '../../contracts/Item';
 import { GitHubResponse } from '../../entities/GitHubResponse';
 import { LoadingService } from '../../shared/services/loading.service';
 import { of, Subscription } from 'rxjs';
-import { FilterService } from '../../services/filter.service';
+import { FilterService } from '../../shared/services/filter.service';
 import { GithubOrgsService } from '../../services/github-orgs.service';
 
 @Component({

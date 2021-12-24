@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { FilterService } from '../services/filter.service';
+import { FilterService } from '../shared/services/filter.service';
 
 import { SearchResultComponent } from './search-result.component';
 import { } from 'jasmine';

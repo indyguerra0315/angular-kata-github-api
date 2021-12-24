@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Event, NavigationEnd, Router } from '@angular/router';
 import { of } from 'rxjs';
-import { FilterService } from '../services/filter.service';
+import { FilterService } from '../shared/services/filter.service';
 
 @Component({
   selector: 'app-search-result',

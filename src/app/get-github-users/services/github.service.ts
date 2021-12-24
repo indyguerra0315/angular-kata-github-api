@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, switchMap, forkJoin } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Item } from '../shared/contracts/Item';
+import { Item } from '../../shared/contracts/Item';
 import { GitHubUser } from '../contracts/GitHubUser';
-import { GitHubResponse } from '../shared/entities/GitHubResponse';
+import { GitHubResponse } from '../../shared/entities/GitHubResponse';
 
 @Injectable({
   providedIn: 'root'

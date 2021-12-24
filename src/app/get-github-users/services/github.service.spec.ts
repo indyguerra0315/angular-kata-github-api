@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GithubService } from './github.service';
 import {} from 'jasmine';
+import { GithubService } from './github.service';
 
 describe('GithubService', () => {
   let service: GithubService;

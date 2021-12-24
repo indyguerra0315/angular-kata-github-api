@@ -11,7 +11,7 @@ import { ListComponent } from './components/list/list.component';
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { CompaniesListComponent } from './components/companies-list/companies-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpErrorInterceptor } from './interceptor/httpErrorInterceptor';
+import { HttpErrorInterceptor } from './shared/interceptor/httpErrorInterceptor';
 import { SortDirective } from './directive/sort.directive';
 
 @NgModule({

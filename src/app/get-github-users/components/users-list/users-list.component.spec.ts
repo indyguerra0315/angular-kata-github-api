@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { GithubService } from '../../services/github.service';
-import { FilterService } from '../../shared/services/filter.service';
-import { LoadingService } from '../../shared/services/loading.service';
+import { GithubService } from '../../../services/github.service';
+import { FilterService } from '../../../shared/services/filter.service';
+import { LoadingService } from '../../../shared/services/loading.service';
 
 import { UsersListComponent } from './users-list.component';
 import {} from 'jasmine';

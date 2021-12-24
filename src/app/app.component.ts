@@ -24,6 +24,11 @@ export class AppComponent {
         });
   }
 
+  ngOnDestroy() {
+    // Unsubscribe to ensure no memory leaks
+    this.errorSubscription.unsubscribe();
+  }
+
   hasRoute(route: string) {
     return this.router.url === route;
   }

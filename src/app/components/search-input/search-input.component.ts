@@ -13,7 +13,7 @@ import { LoadingService } from '../../services/loading.service';
 export class SearchInputComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
-  
+
   isLoading: boolean = false;
   subscription: Subscription;
 
@@ -48,7 +48,7 @@ export class SearchInputComponent implements OnInit {
   }
 
   search(): void {
-    this.router.navigate(['search',  this.form.value.filter ]);
+    this.router.navigate(['search', this.form.value.filter]);
   }
 
 }

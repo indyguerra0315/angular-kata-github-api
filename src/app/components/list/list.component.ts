@@ -27,7 +27,7 @@ export class ListComponent implements OnInit {
 
   constructor(private router: Router,
     private loadingService: LoadingService) {
-      this.subscription = this.loadingService
+    this.subscription = this.loadingService
       .onToggle()
       .subscribe((value) => (this.isLoadingMore = value));
   }

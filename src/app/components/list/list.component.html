@@ -1,7 +1,7 @@
 <!-- Items List -->
 <div *ngIf="data.length > 0">
 
-  <!-- Columns name -->
+  <!-- Columns title -->
   <div class="d-flex justify-content-between align-items-center">
     <label (click)="orderByName('name', !ascSortNameColumn)" [appSort]="ascSortNameColumn">
       {{ column1 | uppercase }} <i class="bi bi-chevron-down desc"></i> <i class="bi bi-chevron-up asc"></i>

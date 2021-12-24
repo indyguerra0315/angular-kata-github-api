@@ -17,11 +17,11 @@ export class AppComponent {
   constructor(private router: Router,
     private errorService: ErrorService) {
 
-      this.errorSubscription = this.errorService
-        .onChange()
-        .subscribe((errorMsg) => {
-          this.onError(errorMsg);
-        });
+    this.errorSubscription = this.errorService
+      .onChange()
+      .subscribe((errorMsg) => {
+        this.onError(errorMsg);
+      });
   }
 
   ngOnDestroy() {
@@ -31,10 +31,6 @@ export class AppComponent {
 
   hasRoute(route: string) {
     return this.router.url === route;
-  }
-
-  resetError() {
-    this.onError('');
   }
 
   onError(errormsg: string) {

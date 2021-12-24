@@ -16,7 +16,7 @@ export class GithubService {
 
   constructor(private http: HttpClient) { }
 
-  getUsers(filter: string, page: number = 1 ): Observable<GitHubResponse> {
+  getUsers(filter: string, page: number = 1): Observable<GitHubResponse> {
 
     const url = `${this.apiUrl}${this.apiSearchUrl}?q=${filter} in:name type:user&per_page=4&page=${page}`;
 
@@ -25,24 +25,24 @@ export class GithubService {
         switchMap((response: any) => {
           // debugger;
 
-            let getUsersData = response.items.map((user: any) => this.getUser(user));
+          let getUsersData = response.items.map((user: any) => this.getUser(user));
 
-            return forkJoin(getUsersData)
-              .pipe(
-                map((itemsMerged: any) => {
+          return forkJoin(getUsersData)
+            .pipe(
+              map((itemsMerged: any) => {
 
-                  let parsedItems = itemsMerged.map(
-                    (item: any) => {
-                      const newItem:Item = {id:item.id, code:item.login, name:item.name, count:item.public_repos};
-                      return newItem;
-                    }
-                  );
-                  response.items = parsedItems;
+                let parsedItems = itemsMerged.map(
+                  (item: any) => {
+                    const newItem: Item = { id: item.id, code: item.login, name: item.name, count: item.public_repos };
+                    return newItem;
+                  }
+                );
+                response.items = parsedItems;
 
-                  return new GitHubResponse(response.total_count, response.items, page);
-                })
-                // ,catchError(this.handleError)
-              );
+                return new GitHubResponse(response.total_count, response.items, page);
+              })
+              // ,catchError(this.handleError)
+            );
         })
         // ,catchError(this.handleError)
       );

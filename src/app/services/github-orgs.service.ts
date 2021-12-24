@@ -16,30 +16,30 @@ export class GithubOrgsService {
 
   constructor(private http: HttpClient) { }
 
-  getCompanies(filter: string, page: number = 1 ): Observable<GitHubResponse> {
+  getCompanies(filter: string, page: number = 1): Observable<GitHubResponse> {
     const url = `${this.apiUrl}${this.apiSearchUrl}?q=${filter} in:name type:org&per_page=4&page=${page}`;
     return this.http.get<any>(url)
       .pipe(
         switchMap((response: any) => {
 
-            let companiesData = response.items.map((organization: any) => this.getCompanyByLogin(organization.login));
+          let companiesData = response.items.map((organization: any) => this.getCompanyByLogin(organization.login));
 
-            return forkJoin(companiesData)
-              .pipe(
-                map((itemsMerged: any) => {
+          return forkJoin(companiesData)
+            .pipe(
+              map((itemsMerged: any) => {
 
-                  let parsedItems = itemsMerged.map(
-                    (item: any) => {
-                      const newItem:Item = {id:item.id, code:item.login, name:item.name, count:item.followers};
-                      return newItem;
-                    }
-                  );
-                  response.items = parsedItems;
+                let parsedItems = itemsMerged.map(
+                  (item: any) => {
+                    const newItem: Item = { id: item.id, code: item.login, name: item.name, count: item.followers };
+                    return newItem;
+                  }
+                );
+                response.items = parsedItems;
 
-                  return new GitHubResponse(response.total_count, response.items, page);
-                })
-                // ,catchError(this.handleError)
-              );
+                return new GitHubResponse(response.total_count, response.items, page);
+              })
+              // ,catchError(this.handleError)
+            );
         })
         // ,catchError(this.handleError)
       );
@@ -50,7 +50,7 @@ export class GithubOrgsService {
     return this.http.get<any>(url)
       .pipe(
         map((response: any) => {
-          const organizations:GitHubOrganization = {id:response.id, login:response.login, name:response.name, followers:response.followers};
+          const organizations: GitHubOrganization = { id: response.id, login: response.login, name: response.name, followers: response.followers };
           return organizations;
         })
       );

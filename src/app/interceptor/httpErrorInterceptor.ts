@@ -2,7 +2,7 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse
 import { Injectable } from '@angular/core';
 import { map, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { ErrorService } from '../services/error.service';
+import { ErrorService } from '../shared/services/error.service';
 import { LoadingService } from '../services/loading.service';
 
 @Injectable({

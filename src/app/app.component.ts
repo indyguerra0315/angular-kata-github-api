@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ErrorService } from './services/error.service';
+import { ErrorService } from './shared/services/error.service';
 
 @Component({
   selector: 'app-root',

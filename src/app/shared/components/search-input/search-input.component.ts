@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { FilterService } from '../../shared/services/filter.service';
-import { LoadingService } from '../../shared/services/loading.service';
+import { FilterService } from '../../services/filter.service';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-search-input',

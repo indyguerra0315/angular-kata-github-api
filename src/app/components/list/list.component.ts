@@ -2,7 +2,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Item } from '../../contracts/Item';
-import { LoadingService } from '../../services/loading.service';
+import { LoadingService } from '../../shared/services/loading.service';
 
 @Component({
   selector: 'app-list',
@@ -41,7 +41,6 @@ export class ListComponent implements OnInit {
   }
 
   reset(): void {
-    this.loadingService.toggleLoading(false);
     this.router.navigate(['/']);
   }
 

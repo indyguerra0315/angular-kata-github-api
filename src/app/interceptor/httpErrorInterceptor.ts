@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ErrorService } from '../shared/services/error.service';
-import { LoadingService } from '../services/loading.service';
+import { LoadingService } from '../shared/services/loading.service';
 
 @Injectable({
   providedIn: 'root'

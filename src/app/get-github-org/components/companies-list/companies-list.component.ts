@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Item } from '../../shared/contracts/Item';
-import { GitHubResponse } from '../../shared/entities/GitHubResponse';
-import { LoadingService } from '../../shared/services/loading.service';
+import { Item } from '../../../shared/contracts/Item';
+import { GitHubResponse } from '../../../shared/entities/GitHubResponse';
+import { LoadingService } from '../../../shared/services/loading.service';
 import { of, Subscription } from 'rxjs';
-import { FilterService } from '../../shared/services/filter.service';
+import { FilterService } from '../../../shared/services/filter.service';
 import { GithubOrgsService } from '../../services/github-orgs.service';
 
 @Component({

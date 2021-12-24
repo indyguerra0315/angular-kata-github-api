@@ -9,7 +9,7 @@ import { SearchInputComponent } from './shared/components/search-input/search-in
 import { ListItemComponent } from './shared/components/list-item/list-item.component';
 import { ListComponent } from './shared/components/list/list.component';
 import { UsersListComponent } from './get-github-users/components/users-list/users-list.component';
-import { CompaniesListComponent } from './components/companies-list/companies-list.component';
+import { CompaniesListComponent } from './get-github-org/components/companies-list/companies-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpErrorInterceptor } from './shared/interceptor/httpErrorInterceptor';
 import { SortDirective } from './shared/directive/sort.directive';

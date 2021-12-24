@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { LoadingService } from '../../shared/services/loading.service';
+import { LoadingService } from '../../../shared/services/loading.service';
 
 import { CompaniesListComponent } from './companies-list.component';
-import { FilterService } from '../../shared/services/filter.service';
+import { FilterService } from '../../../shared/services/filter.service';
 import { } from 'jasmine';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { GithubOrgsService } from 'src/app/services/github-orgs.service';
+import { GithubOrgsService } from 'src/app/get-github-org/services/github-orgs.service';
 
 describe('CompaniesListComponent', () => {
   let component: CompaniesListComponent;

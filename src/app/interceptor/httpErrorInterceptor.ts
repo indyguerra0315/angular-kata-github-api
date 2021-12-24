@@ -3,13 +3,15 @@ import { Injectable } from '@angular/core';
 import { map, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { ErrorService } from '../services/error.service';
+import { LoadingService } from '../services/loading.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpErrorInterceptor implements HttpInterceptor {
 
-  constructor(private errorService: ErrorService) { }
+  constructor(private errorService: ErrorService,
+    private loadingService: LoadingService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request)
@@ -17,6 +19,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         map((event: HttpEvent<any>) => {
           if (event instanceof HttpResponse) {
             this.errorService.updateMessage('');
+            this.loadingService.toggleLoading(false);
           }
           return event;
         }),
@@ -32,6 +35,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           }
           console.log(errorMsg);
           this.errorService.updateMessage(errorMsg);
+          this.loadingService.toggleLoading(false);
           return throwError(() => new Error(errorMsg));
         })
       )

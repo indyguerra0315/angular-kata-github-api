@@ -22,6 +22,11 @@
   class="d-flex justify-content-center show-more-btn"
   (click)="onShowMore()">
   {{'Show More' | uppercase }}
+
+  <!-- Loading -->
+  <div *ngIf="isLoadingMore" class="spinner-border text-secondary spinner-border-sm ml-2 mt-1" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
 </a>
 
 <!-- Research not found data -->

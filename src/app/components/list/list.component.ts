@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Item } from '../../contracts/Item';
 import { LoadingService } from '../../services/loading.service';
 
@@ -17,15 +18,26 @@ export class ListComponent implements OnInit {
   @Input() totalItems!: number | undefined;
 
   @Output() showMore = new EventEmitter();
+  isLoadingMore: boolean = false;
+  subscription: Subscription;
 
   // let sort['ascSortNameColumn', 'ascSortCountColumn'] = [true, true];
   ascSortNameColumn: boolean = true;
   ascSortCountColumn: boolean = true;
 
   constructor(private router: Router,
-    private loadingService: LoadingService) { }
+    private loadingService: LoadingService) {
+      this.subscription = this.loadingService
+      .onToggle()
+      .subscribe((value) => (this.isLoadingMore = value));
+  }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy() {
+    // Unsubscribe to ensure no memory leaks
+    this.subscription.unsubscribe();
   }
 
   reset(): void {
@@ -35,6 +47,7 @@ export class ListComponent implements OnInit {
 
   onShowMore() {
     this.showMore.emit();
+    this.isLoadingMore = true;
   }
 
   orderByName(columnName: string, ascSort: boolean): void {

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Item } from '../../contracts/Item';
-import { GitHubResponse } from '../../entities/GitHubResponse';
+import { Item } from '../../shared/contracts/Item';
+import { GitHubResponse } from '../../shared/entities/GitHubResponse';
 import { GithubService } from '../../services/github.service';
 import { LoadingService } from '../../shared/services/loading.service';
 import { of, Subscription } from 'rxjs';

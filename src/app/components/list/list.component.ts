@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Item } from '../../contracts/Item';
+import { Item } from '../../shared/contracts/Item';
 import { LoadingService } from '../../shared/services/loading.service';
 
 @Component({

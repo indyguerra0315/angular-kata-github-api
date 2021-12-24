@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { forkJoin, map, Observable, switchMap } from 'rxjs';
 import { GitHubOrganization } from '../contracts/GitHubOrganization';
-import { GitHubResponse } from '../entities/GitHubResponse';
-import { Item } from '../contracts/Item';
+import { GitHubResponse } from '../shared/entities/GitHubResponse';
+import { Item } from '../shared/contracts/Item';
 
 @Injectable({
   providedIn: 'root'

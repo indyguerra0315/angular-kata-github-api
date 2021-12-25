@@ -7,6 +7,8 @@ import { FilterService } from '../../../shared/services/filter.service';
 import { } from 'jasmine';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { GithubOrgsService } from 'src/app/get-github-org/services/github-orgs.service';
+import { GithubOrgFakeService } from '../../services/github-org-fake.service';
+
 
 describe('CompaniesListComponent', () => {
   let component: CompaniesListComponent;
@@ -15,7 +17,11 @@ describe('CompaniesListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [GithubOrgsService, LoadingService, FilterService],
+      providers: [
+        { provide: GithubOrgsService, useClass: GithubOrgFakeService },
+        LoadingService,
+        FilterService
+      ],
       declarations: [CompaniesListComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
@@ -30,5 +36,11 @@ describe('CompaniesListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should set organizations', () => {
+    component.filter = 'trekksoft';
+    component.ngOnInit();
+    expect(component.companyItems[0].code).toEqual('trekksoft');
   });
 });

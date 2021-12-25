@@ -45,12 +45,17 @@ export class GithubOrgsService {
       );
   }
 
-  getCompanyByLogin(companylogin: string): Observable<any> {
+  getCompanyByLogin(companylogin: string): Observable<GitHubOrganization> {
     const url = `${this.apiUrl}${this.apiOrganizationUrl}/${companylogin}`;
     return this.http.get<any>(url)
       .pipe(
         map((response: any) => {
-          const organizations: GitHubOrganization = { id: response.id, login: response.login, name: response.name, followers: response.followers };
+          const organizations: GitHubOrganization = {
+            id: response.id,
+            login: response.login,
+            name: response.name,
+            followers: response.followers
+          };
           return organizations;
         })
       );

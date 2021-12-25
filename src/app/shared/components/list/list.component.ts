@@ -49,7 +49,17 @@ export class ListComponent implements OnInit {
     this.isLoadingMore = true;
   }
 
-  orderByName(columnName: string, ascSort: boolean): void {
+  toggleOrderByCount() : void {
+    this.ascSortCountColumn = !this.ascSortCountColumn;
+    this.orderList('count', this.ascSortCountColumn);
+  }
+
+  toggleOrderByName(): void {
+    this.ascSortNameColumn = !this.ascSortNameColumn;
+    this.orderList('name', this.ascSortNameColumn);
+  }
+
+  private orderList(columnName: string, ascSort: boolean): void {
     this.data.sort((a: Item, b: Item) => {
       const keyTyped = columnName as keyof typeof a;
 
@@ -58,8 +68,15 @@ export class ListComponent implements OnInit {
         return -1;
       }
 
+      // If data are equals
+      if ( a[keyTyped] == b[keyTyped] ) {
+        return 0;
+      }
+
       console.log(a[keyTyped], b[keyTyped]);
-      return a[keyTyped] && b[keyTyped] ? -1 : 1;
+      return ascSort
+        ? (a[keyTyped] > b[keyTyped] ? -1 : 1)
+        : (a[keyTyped] < b[keyTyped] ? -1 : 1);
     });
   }
 

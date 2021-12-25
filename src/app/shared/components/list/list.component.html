@@ -3,10 +3,10 @@
 
   <!-- Columns title -->
   <div class="d-flex justify-content-between align-items-center">
-    <label (click)="orderByName('name', !ascSortNameColumn)" [appSort]="ascSortNameColumn">
+    <label (click)="toggleOrderByName()" [appSort]="ascSortNameColumn">
       {{ column1 | uppercase }} <i class="bi bi-chevron-down desc"></i> <i class="bi bi-chevron-up asc"></i>
     </label>
-    <label (click)="orderByName('count', !ascSortCountColumn)" [appSort]="ascSortCountColumn" class="subtitle">
+    <label (click)="toggleOrderByCount()" [appSort]="ascSortCountColumn" class="subtitle">
       {{ column2 | uppercase }} <i class="bi bi-chevron-down desc"></i> <i class="bi bi-chevron-up asc"></i>
     </label>
   </div>
